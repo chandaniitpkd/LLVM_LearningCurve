@@ -9,15 +9,13 @@
 #include <tuple>
 
 using namespace llvm;
-
-// Custom hash function for std::tuple<unsigned int, Value*, Value*>
 struct TupleHash {
     std::size_t operator()(const std::tuple<unsigned int, Value*, Value*>& key) const {
         auto [opcode, op1, op2] = key;
         std::size_t h1 = std::hash<unsigned int>{}(opcode);
         std::size_t h2 = std::hash<Value*>{}(op1);
         std::size_t h3 = std::hash<Value*>{}(op2);
-        return h1 ^ (h2 << 1) ^ (h3 << 2);  // Combine hash values
+        return h1 ^ (h2 << 1) ^ (h3 << 2); 
     }
 };
 
@@ -36,12 +34,10 @@ struct LVNPass : public PassInfoMixin<LVNPass> {
                     std::tuple<unsigned int, Value*, Value*> key = {opcode, op1, op2};
 
                     if (valueTable.count(key)) {
-                        // Replace the instruction with the previously computed value
                         I.replaceAllUsesWith(valueTable[key]);
                         errs() << "LVN: Replaced " << I << " with existing value.\n";
                         I.eraseFromParent();
                     } else {
-                        // Store this instruction as the canonical computation
                         valueTable[key] = &I;
                     }
                 }
@@ -50,7 +46,7 @@ struct LVNPass : public PassInfoMixin<LVNPass> {
         return PreservedAnalyses::all();
     }
 };
-} // namespace
+}
 
 extern "C" ::llvm::PassPluginLibraryInfo LLVM_ATTRIBUTE_WEAK llvmGetPassPluginInfo() {
     return {
