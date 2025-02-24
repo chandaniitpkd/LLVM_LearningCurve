@@ -1,0 +1,7 @@
+/home/152402004/Documents/LVN/build/CMakeFiles/intrinsics_gen.dir
+/home/152402004/Documents/LVN/build/CMakeFiles/omp_gen.dir
+/home/152402004/Documents/LVN/build/CMakeFiles/acc_gen.dir
+/home/152402004/Documents/LVN/build/CMakeFiles/RISCVTargetParserTableGen.dir
+/home/152402004/Documents/LVN/build/CMakeFiles/LVNPass.dir
+/home/152402004/Documents/LVN/build/CMakeFiles/edit_cache.dir
+/home/152402004/Documents/LVN/build/CMakeFiles/rebuild_cache.dir

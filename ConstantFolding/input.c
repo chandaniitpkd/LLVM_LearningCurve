@@ -1,17 +1,16 @@
 #include <stdio.h>
 
-int compute(int a, int b) {
-    int x = 5; 
-    int y = a + b + x; 
-    int z = x * 2; 
-    int w = y * 2; 
-
-    return z + w; 
-}
-
 int main() {
-    int result = compute(5, 10);
-    printf("Result: %d\n", result);
+    volatile int a = 10;  // `volatile` prevents Clang from folding at compile time
+    volatile int b = 20;
+    volatile int c = 5;
+    volatile int d = 6;
+
+    int x = a + b;  // Now this addition will appear in IR
+    int y = c * d;  // Multiplication also stays in IR
+    int z = x + y;
+    
+    printf("%d\n", z);
     return 0;
 }
 
